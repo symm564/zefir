@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Зефирный Сад — букеты цветов из зефира ручной работы</title>
+<meta name="description" content="Съедобные букеты из зефирных тюльпанов и роз. Ручная работа, доставка, праздничная упаковка.">
+
+<!--
+  ═══════════════════════════════════════════════════════════
+  КАК ПОДКЛЮЧИТЬ ВАШИ ФОТОГРАФИИ:
+  1. Создайте папку "img" рядом с файлом index.html
+  2. Положите туда свои фото с именами:
+     hero.jpg, basket-1.jpg, basket-2.jpg, basket-3.jpg,
+     basket-4.jpg, basket-5.jpg
+  3. Или просто замените значения src="..." у тегов <img>
+     на ссылки на ваши фото (например, из соцсетей).
+  Пока фото не подключены — автоматически показываются
+  красивые заглушки.
+  ═══════════════════════════════════════════════════════════
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#FBF7F4; --cream:#F6E7E1; --card:#FFFFFF;
+    --primary:#D98A94; --primary-dark:#C06472; --primary-soft:#F6E3E6;
+    --sage:#A9C0A0; --sage-soft:#EDF3EA; --peach:#F3D9C9; --butter:#F6E7C9;
+    --text:#4E3D42; --muted:#8A7A80;
+    --shadow:0 12px 32px rgba(94,64,72,.09);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:92px}
+  body{font-family:'Manrope','Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden}
+  img{max-width:100%;display:block}
+  ::selection{background:var(--primary);color:#fff}
+  .container{width:min(1140px,92%);margin:0 auto}
+  section{padding:84px 0}
+
+  /* ── Кнопки ─────────────────────────────── */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 30px;border:none;border-radius:999px;font:inherit;font-weight:700;font-size:1rem;cursor:pointer;text-decoration:none;transition:transform .25s,box-shadow .25s,background .25s}
+  .btn-primary{background:linear-gradient(135deg,#E7A6AF,#C06472);color:#fff;box-shadow:0 12px 26px rgba(192,100,114,.35)}
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 18px 34px rgba(192,100,114,.45)}
+  .btn-outline{background:transparent;border:2px solid var(--primary);color:var(--primary-dark)}
+  .btn-outline:hover{background:var(--primary-soft);transform:translateY(-3px)}
+  .btn-small{padding:10px 22px;font-size:.9rem}
+
+  /* ── Шапка ─────────────────────────────── */
+  header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(251,247,244,.82);backdrop-filter:blur(12px);transition:box-shadow .3s}
+  header.scrolled{box-shadow:0 6px 24px rgba(94,64,72,.1)}
+  .header-inner{display:flex;align-items:center;justify-content:space-between;height:78px}
+  .logo{font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:700;color:var(--primary-dark);text-decoration:none}
+  .logo b{color:var(--text)}
+  nav{display:flex;align-items:center;gap:28px}
+  nav a{color:var(--text);text-decoration:none;font-weight:600;font-size:.95rem;opacity:.85;transition:.2s}
+  nav a:hover{color:var(--primary-dark);opacity:1}
+  .burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px}
+  .burger span{width:26px;height:2.5px;border-radius:2px;background:var(--text);transition:.3s}
+  .burger.active span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+  .burger.active span:nth-child(2){opacity:0}
+  .burger.active span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+
+  /* ── Главный экран ─────────────────────── */
+  .hero{padding:158px 0 90px}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center}
+  .hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--primary-soft);color:var(--primary-dark);padding:8px 18px;border-radius:999px;font-weight:700;font-size:.85rem}
+  h1{font-family:'Playfair Display',serif;font-size:clamp(2.1rem,5vw,3.4rem);line-height:1.16;margin:20px 0 18px}
+  h1 i{color:var(--primary-dark)}
+  .hero-sub{color:var(--muted);font-size:1.08rem;max-width:520px}
+  .hero-buttons{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+  .hero-stats{display:flex;gap:40px;flex-wrap:wrap;margin-top:44px}
+  .stat b{display:block;font-family:'Playfair Display',serif;font-size:1.7rem;color:var(--primary-dark)}
+  .stat span{color:var(--muted);font-size:.9rem}
+  .hero-photo{position:relative}
+  .hero-photo::before{content:'';position:absolute;top:-26px;right:-26px;width:130px;height:130px;border-radius:50%;background:var(--peach);z-index:-1}
+  .hero-photo::after{content:'';position:absolute;bottom:-26px;left:-26px;width:110px;height:110px;border-radius:50%;background:var(--sage-soft);z-index:-1}
+  .hero-photo img{width:100%;aspect-ratio:5/5.4;object-fit:cover;border-radius:30px;box-shadow:0 30px 60px rgba(94,64,72,.2)}
+  .hero-float{position:absolute;bottom:24px;left:-26px;background:#fff;border-radius:18px;padding:12px 20px;box-shadow:var(--shadow);font-weight:800;font-size:.95rem}
+  .hero-float small{display:block;font-weight:600;color:var(--muted)}
+
+  /* ── Заголовки секций ──────────────────── */
+  .section-head{text-align:center;max-width:660px;margin:0 auto 52px}
+  .tag{color:var(--primary-dark);letter-spacing:.2em;text-transform:uppercase;font-size:.78rem;font-weight:800}
+  .section-title{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,3.6vw,2.5rem);margin-top:12px}
+  .section-sub{color:var(--muted);margin-top:14px}
+
+  /* ── Преимущества ──────────────────────── */
+  .adv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px}
+  .adv-card{background:var(--card);border-radius:22px;padding:30px 26px;box-shadow:var(--shadow);transition:transform .3s}
+  .adv-card:hover{transform:translateY(-7px)}
+  .adv-icon{width:58px;height:58px;border-radius:18px;display:grid;place-items:center;margin-bottom:18px;background:var(--tint,var(--primary-soft));color:var(--primary-dark)}
+  .adv-card h3{font-size:1.08rem;margin-bottom:8px}
+  .adv-card p{color:var(--muted);font-size:.93rem}
+
+  /* ── Каталог / услуги ──────────────────── */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+  .card{background:var(--card);border-radius:24px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .3s}
+  .card:hover{transform:translateY(-7px)}
+  .card-media{overflow:hidden}
+  .card-media img{width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .6s}
+  .card:hover .card-media img{transform:scale(1.06)}
+  .card-body{padding:24px;display:flex;flex-direction:column;gap:10px;flex:1}
+  .card-title{font-family:'Playfair Display',serif;font-size:1.2rem}
+  .card-desc{color:var(--muted);font-size:.92rem;flex:1}
+  .card-foot{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
+  .price{font-weight:800;font-size:1.15rem;color:var(--primary-dark)}
+
+  /* ── Отзывы ────────────────────────────── */
+  .rev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+  .rev-card{background:var(--card);border-radius:22px;padding:30px;box-shadow:var(--shadow)}
+  .stars{color:#E8B44C;letter-spacing:3px;font-size:1.05rem}
+  .rev-text{margin:14px 0 20px;font-size:.95rem}
+  .rev-author{display:flex;align-items:center;gap:14px}
+  .avatar{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;background:linear-gradient(135deg,#E7A6AF,#C06472)}
+  .rev-author b{display:block;font-size:.95rem}
+  .rev-author span{color:var(--muted);font-size:.82rem}
+
+  /* ── Форма заказа ──────────────────────── */
+  .order-section{background:linear-gradient(180deg,var(--cream),var(--bg))}
+  .order-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
+  .order-list{list-style:none;margin-top:26px;display:grid;gap:14px}
+  .order-list li{display:flex;gap:12px;align-items:flex-start;font-weight:600}
+  .order-list svg{flex:none;margin-top:3px;color:var(--sage)}
+  .form-card{background:#fff;border-radius:26px;padding:36px;box-shadow:0 24px 60px rgba(94,64,72,.14)}
+  .form-card h3{font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:6px}
+  .form-card>p{color:var(--muted);font-size:.92rem;margin-bottom:22px}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-size:.85rem;font-weight:700;margin-bottom:6px}
+  .field input,.field select,.field textarea{width:100%;padding:14px 16px;border:1.5px solid #EBD9D5;border-radius:14px;font:inherit;background:#FDFAF8;color:var(--text);transition:border .2s,box-shadow .2s}
+  .field textarea{min-height:96px;resize:vertical}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 4px rgba(217,138,148,.16)}
+  .field .invalid{border-color:#D66A6A;box-shadow:0 0 0 4px rgba(214,106,106,.14)}
+  .form-card .btn{width:100%}
+  .form-note{font-size:.78rem;color:var(--muted);text-align:center;margin-top:12px}
+  .form-success{background:#EAF4E7;border:1.5px solid #BCD8B2;color:#4C7A43;border-radius:14px;padding:14px 18px;margin-top:16px;font-weight:700;text-align:center}
+  .flash{animation:flash .9s ease-out}
+  @keyframes flash{0%{box-shadow:0 0 0 0 rgba(217,138,148,.55)}100%{box-shadow:0 0 0 28px rgba(217,138,148,0)}}
+
+  /* ── Контакты ─────────────────────────── */
+  .contacts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px}
+  .contact-card{background:var(--card);border-radius:22px;padding:30px 24px;box-shadow:var(--shadow);text-align:center}
+  .contact-card .adv-icon{margin:0 auto 16px}
+  .contact-card h3{font-size:1rem;margin-bottom:6px}
+  .contact-card p,.contact-card a{color:var(--muted);font-size:.95rem;text-decoration:none}
+  .contact-card a:hover{color:var(--primary-dark)}
+  .socials{display:flex;gap:16px;justify-content:center;margin-top:36px}
+  .social{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:#fff;box-shadow:var(--shadow);color:var(--primary-dark);font-weight:800;font-size:.9rem;text-decoration:none;transition:.25s}
+  .social:hover{background:linear-gradient(135deg,#E7A6AF,#C06472);color:#fff;transform:translateY(-4px)}
+
+  footer{padding:30px 0;text-align:center;color:var(--muted);font-size:.9rem;border-top:1px solid #F0E2DD}
+
+  /* ── Анимация появления ────────────────── */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.visible{opacity:1;transform:none}
+
+  /* ── Адаптивность ──────────────────────── */
+  @media(max-width:920px){
+    .burger{display:flex}
+    nav{position:fixed;top:78px;left:0;right:0;flex-direction:column;background:#FBF7F4;padding:28px;gap:20px;transform:translateY(-130%);transition:transform .35s;box-shadow:0 20px 40px rgba(94,64,72,.12)}
+    nav.open{transform:none}
+    .hero-grid,.order-grid{grid-template-columns:1fr}
+    .hero{padding-top:130px}
+    .hero-float{left:12px}
+  }
+  @media(max-width:560px){
+    section{padding:62px 0}
+    .hero-photo::before,.hero-photo::after{display:none}
+    .form-card{padding:26px}
+  }
+</style>
+</head>
+<body id="home">
+
+<!-- ═══════════ ШАПКА ═══════════ -->
+<header id="header">
+  <div class="container header-inner">
+    <a class="logo" href="#home">🌸 Зефирный<b>Сад</b></a>
+    <nav id="nav">
+      <a href="#advantages">Преимущества</a>
+      <a href="#catalog">Букеты</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#contacts">Контакты</a>
+      <a href="#order" class="btn btn-primary btn-small">Заказать</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Открыть меню">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ═══════════ ГЛАВНЫЙ ЭКРАН ═══════════ -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="reveal visible">
+      <span class="hero-badge">🤍 100% ручная работа</span>
+      <h1>Букеты из зефирных цветов, которые <i>хочется съесть</i></h1>
+      <p class="hero-sub">Тюльпаны и розы из натурального зефира — подарок, который восхищает глазами и радует вкусом. Не вянут, не требуют ухода и остаются тёплым воспоминанием.</p>
+      <div class="hero-buttons">
+        <a href="#catalog" class="btn btn-primary">Выбрать букет</a>
+        <a href="#order" class="btn btn-outline">Заказать свой дизайн</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><b>500+</b><span>букетов создано</span></div>
+        <div class="stat"><b>4.9 ★</b><span>средняя оценка</span></div>
+        <div class="stat"><b>2 часа</b><span>доставка по городу</span></div>
+      </div>
+    </div>
+    <div class="hero-photo reveal visible">
+      <!-- ВАШЕ ФОТО: положите файл img/hero.jpg или замените src -->
+      <img src="img/hero.jpg" alt="Корзина с букетом из зефирных тюльпанов" data-ph="Фото вашего букета">
+      <div class="hero-float">★ 4.9<small>320+ отзывов</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ ПРЕИМУЩЕСТВА ═══════════ -->
+<section id="advantages">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="tag">Почему мы</span>
+      <h2 class="section-title">Подарок, который удивляет дважды</h2>
+      <p class="section-sub">Сначала — красотой, потом — вкусом. Вот за что нас любят.</p>
+    </div>
+    <div class="adv-grid">
+      <div class="adv-card reveal">
+        <div class="adv-icon" style="--tint:#EDF3EA"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 19c8 0 14-6 14-14-8 0-14 6-14 14z"/><path d="M5 19c4-6 8-10 14-14"/></svg></div>
+        <h3>Натуральный состав</h3>
+        <p>Ягодное и фруктовое пюре, яичный белок и агар-агар. Ни одного пластикового лепестка — всё съедобно.</p>
+      </div>
+      <div class="adv-card reveal">
+        <div class="adv-icon" style="--tint:#F6E7C9"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+        <h3>Не вянут</h3>
+        <p>В отличие от живых цветов, зефирный букет радует до 14 дней — а потом становится изысканным десертом.</p>
+      </div>
+      <div class="adv-card reveal">
+        <div class="adv-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.5-9-9c-1.5-3.5 1-7 4.5-7 2 0 3.5 1 4.5 2.5C13 5 14.5 4 16.5 4 20 4 22.5 7.5 21 11c-2 4.5-9 9-9 9z"/></svg></div>
+        <h3>Ручная работа</h3>
+        <p>Каждый лепесток отсаживается вручную. Соберём букет в вашей цветовой гамме и под ваш повод.</p>
+      </div>
+      <div class="adv-card reveal">
+        <div class="adv-icon" style="--tint:#F3D9C9"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="5" rx="1"/><path d="M5 13v8h14v-8"/><path d="M12 8v13"/><path d="M12 8c-2 0-4-1-4-3s3-3 4 0c1-3 4-2 4 0s-2 3-4 3z"/></svg></div>
+        <h3>Праздничная упаковка</h3>
+        <p>Корзины, короба, ленты и открытка с вашим текстом — бесплатно к каждому заказу.</p>
+      </div>
+      <div class="adv-card reveal">
+        <div class="adv-icon" style="--tint:#DCE9F2"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="7" width="12" height="9" rx="1"/><path d="M13 10h4l3 3v3h-7"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg></div>
+        <h3>Быстрая доставка</h3>
+        <p>Привезём по городу за 2 часа или точно к нужному времени. Бережная транспортировка в коробе.</p>
+      </div>
+      <div class="adv-card reveal">
+        <div class="adv-icon" style="--tint:#EDF3EA"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13" r="4"/><path d="M8.5 7 10 4h4l1.5 3"/></svg></div>
+        <h3>Фото перед отправкой</h3>
+        <p>Перед доставкой присылаем фото готового букета — вы всегда знаете, что получит адресат.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ КАТАЛОГ / УСЛУГИ ═══════════ -->
+<section id="catalog">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="tag">Наши букеты</span>
+      <h2 class="section-title">Выберите свой идеальный букет</h2>
+      <p class="section-sub">Собираем букеты к дням рождения, свадьбам, 8 Марта и просто без повода. Любой букет можем повторить в ваших любимых оттенках.</p>
+    </div>
+    <div class="cards">
+      <div class="card reveal">
+        <div class="card-media"><!-- ФОТО: img/basket-1.jpg --><img src="img/basket-1.jpg" alt="Корзина с зефирными тюльпанами" loading="lazy" data-ph="Корзина «Тюльпаны»"></div>
+        <div class="card-body">
+          <h3 class="card-title">Корзина «Тюльпаны»</h3>
+          <p class="card-desc">15 нежных тюльпанов из зефира в деревянной корзине с кружевом и ягодами.</p>
+          <div class="card-foot"><span class="price">3 200 ₽</span><button class="btn btn-outline btn-small" data-order="Корзина «Тюльпаны»">Заказать</button></div>
+        </div>
+      </div>
+      <div class="card reveal">
+        <div class="card-media"><!-- ФОТО: img/basket-2.jpg --><img src="img/basket-2.jpg" alt="Корзина с зефирными розами" loading="lazy" data-ph="Корзина «Розы»"></div>
+        <div class="card-body">
+          <h3 class="card-title">Корзина «Розы»</h3>
+          <p class="card-desc">Кремовые, пудровые и персиковые розы с веточками ягод и листиками.</p>
+          <div class="card-foot"><span class="price">3 600 ₽</span><button class="btn btn-outline btn-small" data-order="Корзина «Розы»">Заказать</button></div>
+        </div>
+      </div>
+      <div class="card reveal">
+        <div class="card-media"><!-- ФОТО: img/basket-3.jpg --><img src="img/basket-3.jpg" alt="Подарочная корзина в упаковке" loading="lazy" data-ph="Подарочная корзина"></div>
+        <div class="card-body">
+          <h3 class="card-title">Подарочная корзина</h3>
+          <p class="card-desc">Корзина в прозрачной упаковке с атласными лентами и открыткой — готова к вручению.</p>
+          <div class="card-foot"><span class="price">3 900 ₽</span><button class="btn btn-outline btn-small" data-order="Подарочная корзина">Заказать</button></div>
+        </div>
+      </div>
+      <div class="card reveal">
+        <div class="card-media"><!-- ФОТО: img/basket-4.jpg --><img src="img/basket-4.jpg" alt="Тюльпаны в подарочной коробке" loading="lazy" data-ph="Тюльпаны в коробке"></div>
+        <div class="card-body">
+          <h3 class="card-title">Тюльпаны в коробке</h3>
+          <p class="card-desc">Пастельные тюльпаны в прозрачной коробке с бантом — стильно и очень трогательно.</p>
+          <div class="card-foot"><span class="price">3 400 ₽</span><button class="btn btn-outline btn-small" data-order="Тюльпаны в коробке">Заказать</button></div>
+        </div>
+      </div>
+      <div class="card reveal">
+        <div class="card-media"><!-- ФОТО: img/basket-5.jpg --><img src="img/basket-5.jpg" alt="Букет из зефирных цветов в упаковке" loading="lazy" data-ph="Букет «Пастель»"></div>
+        <div class="card-body">
+          <h3 class="card-title">Букет «Пастель»</h3>
+          <p class="card-desc">21 тюльпан и роза в матовой упаковке с лентой — как настоящий, только вкуснее.</p>
+          <div class="card-foot"><span class="price">2 900 ₽</span><button class="btn btn-outline btn-small" data-order="Букет «Пастель»">Заказать</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ ОТЗЫВЫ ═══════════ -->
+<section id="reviews">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="tag">Отзывы</span>
+      <h2 class="section-title">Нас дарят и советуют друзьям</h2>
+    </div>
+    <div class="rev-grid">
+      <div class="rev-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="rev-text">«Заказывала корзину маме на юбилей — восторг! Никто сразу не поверил, что цветы съедобные. Зефир нежный, в меру сладкий, а выглядит лучше живых цветов.»</p>
+        <div class="rev-author"><div class="avatar">А</div><div><b>Алина</b><span>корзина «Розы»</span></div></div>
+      </div>
+      <div class="rev-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="rev-text">«Уже третий заказ за год. Тюльпаны один в один как настоящие, фото прислали перед доставкой, привезли минута в минуту. Сервис на уровне!»</p>
+        <div class="rev-author"><div class="avatar">М</div><div><b>Марина</b><span>корзина «Тюльпаны»</span></div></div>
+      </div>
+      <div class="rev-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="rev-text">«Хотел удивить жену — получилось! Красивейшая упаковка, открытка с моим текстом и вкуснейший зефир. Жена до сих пор вспоминает этот подарок.»</p>
+        <div class="rev-author"><div class="avatar">И</div><div><b>Игорь</b><span>подарочная корзина</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ ФОРМА ЗАКАЗА ═══════════ -->
+<!-- Чтобы получать заявки по-настоящему: подключите сервис
+     formsubmit.co (укажите action и method="POST") или Telegram-бота. -->
+<section id="order" class="order-section">
+  <div class="container order-grid">
+    <div class="reveal">
+      <span class="tag">Заказ</span>
+      <h2 class="section-title">Закажите букет или задайте вопрос</h2>
+      <p class="section-sub" style="margin-top:14px">Оставьте заявку — мы ответим в течение 15 минут в рабочее время, подскажем по составу, оттенкам и доставке.</p>
+      <ul class="order-list">
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Соберём букет в ваших любимых оттенках</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Открытка с вашим текстом — бесплатно</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Доставка за 2 часа или точно ко времени</li>
+      </ul>
+    </div>
+    <form class="form-card reveal" id="order-form" novalidate>
+      <h3>Оставить заявку</h3>
+      <p>Заполните форму — и мы свяжемся с вами для подтверждения заказа.</p>
+      <div class="field">
+        <label for="name">Ваше имя *</label>
+        <input type="text" id="name" name="name" placeholder="Например, Сергей" autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="phone">Телефон *</label>
+        <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" autocomplete="tel">
+      </div>
+      <div class="field">
+        <label for="bouquet">Какой букет интересует?</label>
+        <select id="bouquet" name="bouquet">
+          <option>Корзина «Тюльпаны»</option>
+          <option>Корзина «Розы»</option>
+          <option>Подарочная корзина</option>
+          <option>Тюльпаны в коробке</option>
+          <option>Букет «Пастель»</option>
+          <option selected>Букет на заказ (свой дизайн)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="comment">Комментарий</label>
+        <textarea id="comment" name="comment" placeholder="Повод, любимые цвета, дата доставки…"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Отправить заявку 🌷</button>
+      <p class="form-note">Нажимая кнопку, вы соглашаетесь на обработку персональных данных</p>
+      <div class="form-success" id="form-success" hidden>🎉 Спасибо! Ваша заявка принята — мы скоро свяжемся с вами.</div>
+    </form>
+  </div>
+</section>
+
+<!-- ═══════════ КОНТАКТЫ ═══════════ -->
+<section id="contacts">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="tag">Контакты</span>
+      <h2 class="section-title">Мы всегда на связи</h2>
+    </div>
+    <div class="contacts-grid">
+      <div class="contact-card reveal">
+        <div class="adv-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.5 2.8.7a2 2 0 0 1 1.7 2z"/></svg></div>
+        <h3>Телефон</h3>
+        <a href="tel:+79991234567">+7 (999) 123-45-67</a>
+      </div>
+      <div class="contact-card reveal">
+        <div class="adv-icon" style="--tint:#EDF3EA"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></div>
+        <h3>Почта</h3>
+        <a href="mailto:hello@zefir-sad.ru">hello@zefir-sad.ru</a>
+      </div>
+      <div class="contact-card reveal">
+        <div class="adv-icon" style="--tint:#F3D9C9"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <h3>Адрес</h3>
+        <p>г. Москва, ул. Цветочная, 12<br>(самовывоз по записи)</p>
+      </div>
+      <div class="contact-card reveal">
+        <div class="adv-icon" style="--tint:#F6E7C9"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+        <h3>Режим работы</h3>
+        <p>Ежедневно с 9:00 до 21:00</p>
+      </div>
+    </div>
+    <div class="socials reveal">
+      <a class="social" href="#" title="Telegram">TG</a>
+      <a class="social" href="#" title="WhatsApp">WA</a>
+      <a class="social" href="#" title="ВКонтакте">VK</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">© <span id="year"></span> Зефирный Сад · Букеты из зефира ручной работы · Сделано с 🤍</div>
+</footer>
+
+<script>
+  // Год в подвале
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Тень шапки при прокрутке
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 10));
+
+  // Бургер-меню
+  const burger = document.getElementById('burger'), nav = document.getElementById('nav');
+  burger.addEventListener('click', () => { nav.classList.toggle('open'); burger.classList.toggle('active'); });
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { nav.classList.remove('open'); burger.classList.remove('active'); }));
+
+  // Плавное появление блоков
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+  }), { threshold: .12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Заглушки вместо отсутствующих фото
+  function phSVG(label) {
+    const safe = label.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    const svg = "<svg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'>" +
+      "<defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='#F7EAE4'/><stop offset='1' stop-color='#EBD5D0'/></linearGradient></defs>" +
+      "<rect width='800' height='600' fill='url(#g)'/>" +
+      "<circle cx='400' cy='205' r='42' fill='#EFC3CA'/><circle cx='350' cy='242' r='42' fill='#EFC3CA'/><circle cx='450' cy='242' r='42' fill='#EFC3CA'/>" +
+      "<circle cx='368' cy='298' r='42' fill='#EFC3CA'/><circle cx='432' cy='298' r='42' fill='#EFC3CA'/><circle cx='400' cy='255' r='36' fill='#F6E3D7'/>" +
+      "<path d='M400 335v115' stroke='#9DBA94' stroke-width='10' stroke-linecap='round'/>" +
+      "<path d='M400 405c-42-12-74 8-84 40 42 12 74-8 84-40z' fill='#A9C0A0'/>" +
+      "<path d='M400 425c42-12 74 8 84 40-42 12-74-8-84-40z' fill='#B7CBAD'/>" +
+      "<text x='400' y='510' text-anchor='middle' font-family='Arial,sans-serif' font-size='30' font-weight='bold' fill='#A8767F'>" + safe + "</text>" +
+      "<text x='400' y='548' text-anchor='middle' font-family='Arial,sans-serif' font-size='20' fill='#BC9AA0'>ваше фото — папка img/</text></svg>";
+    return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+  }
+  document.querySelectorAll('img[data-ph]').forEach(img => {
+    const apply = () => { img.src = phSVG(img.dataset.ph); };
+    img.addEventListener('error', apply, { once: true });
+    if (img.complete && img.naturalWidth === 0) apply();
+  });
+
+  // Кнопки «Заказать» в карточках → подставляют букет в форму
+  document.querySelectorAll('[data-order]').forEach(btn => btn.addEventListener('click', () => {
+    const sel = document.getElementById('bouquet');
+    [...sel.options].forEach(o => { if (o.text === btn.dataset.order) sel.value = o.value; });
+    const form = document.getElementById('order-form');
+    form.classList.remove('flash'); void form.offsetWidth; form.classList.add('flash');
+  }));
+
+  // Проверка и «отправка» формы
+  const form = document.getElementById('order-form');
+  const nameF = document.getElementById('name'), phoneF = document.getElementById('phone');
+  [nameF, phoneF].forEach(f => f.addEventListener('input', () => f.classList.remove('invalid')));
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    let ok = true;
+    if (nameF.value.trim().length < 2) { nameF.classList.add('invalid'); ok = false; }
+    if (!/^[+()\-\d\s]{10,18}$/.test(phoneF.value.trim())) { phoneF.classList.add('invalid'); ok = false; }
+    if (!ok) return;
+    document.getElementById('form-success').hidden = false;
+    form.reset();
+    setTimeout(() => { document.getElementById('form-success').hidden = true; }, 7000);
+  });
+</script>
+</body>
+</html>
