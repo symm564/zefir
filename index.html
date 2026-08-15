@@ -506,7 +506,7 @@
         'Букет': document.getElementById('bouquet').value,
         'Комментарий': document.getElementById('comment').value
       })
-        }).then(r => r.json()).then(d => alert('Web3Forms: ' + JSON.stringify(d))).catch(e => alert('Ошибка сети: ' + e));
+            }).catch(() => {});
     document.getElementById('form-success').hidden = false;
     form.reset();
     setTimeout(() => { document.getElementById('form-success').hidden = true; }, 7000);
