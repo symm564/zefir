@@ -493,7 +493,7 @@
             fetch('https://api.telegram.org/bot8864204850:AAFhp25oFj48oFCHuLWq2dSFIwcTj0e6Ios/sendMessage', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chat_id: ' 446432266', text: '🌷 Новая заявка с сайта!\nИмя: ' + nameF.value + '\nТелефон: ' + phoneF.value + '\nБукет: ' + document.getElementById('bouquet').value + '\nКомментарий: ' + document.getElementById('comment').value })
+      body: JSON.stringify({    chat_id: '446432266', text: '🌷 Новая заявка с сайта!\nИмя: ' + nameF.value + '\nТелефон: ' + phoneF.value + '\nБукет: ' + document.getElementById('bouquet').value + '\nКомментарий: ' + document.getElementById('comment').value })
     }).catch(() => {});
     document.getElementById('form-success').hidden = false;
     form.reset();
