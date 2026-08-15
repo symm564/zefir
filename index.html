@@ -487,6 +487,11 @@
     if (nameF.value.trim().length < 2) { nameF.classList.add('invalid'); ok = false; }
     if (!/^[+()\-\d\s]{10,18}$/.test(phoneF.value.trim())) { phoneF.classList.add('invalid'); ok = false; }
     if (!ok) return;
+        fetch('https://formsubmit.co/ajax/symm@yandex.ru', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ 'Имя': nameF.value, 'Телефон': phoneF.value, 'Букет': document.getElementById('bouquet').value, 'Комментарий': document.getElementById('comment').value })
+    }).catch(() => {});
     document.getElementById('form-success').hidden = false;
     form.reset();
     setTimeout(() => { document.getElementById('form-success').hidden = true; }, 7000);
