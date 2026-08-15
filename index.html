@@ -495,6 +495,18 @@
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({    chat_id: '446432266', text: '🌷 Новая заявка с сайта!\nИмя: ' + nameF.value + '\nТелефон: ' + phoneF.value + '\nБукет: ' + document.getElementById('bouquet').value + '\nКомментарий: ' + document.getElementById('comment').value })
     }).catch(() => {});
+        fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        access_key: '827b103d-0fff-4364-9a8d-499618e56add',
+        subject: '🌷 Новая заявка с сайта Зефирный Сад',
+        'Имя': nameF.value,
+        'Телефон': phoneF.value,
+        'Букет': document.getElementById('bouquet').value,
+        'Комментарий': document.getElementById('comment').value
+      })
+    }).catch(() => {});
     document.getElementById('form-success').hidden = false;
     form.reset();
     setTimeout(() => { document.getElementById('form-success').hidden = true; }, 7000);
